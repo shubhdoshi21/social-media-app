@@ -17,13 +17,28 @@ const CreatePost = () => {
     const postBody = postBodyElement.current.value;
     const reactions = reactionsElement.current.value;
     const tags = tagsElement.current.value.split(" ");
-    addPost(userId, postTitle, postBody, reactions, tags);
+
     userIdElement.current.value = "";
     postTitleElement.current.value = "";
     postBodyElement.current.value = "";
     reactionsElement.current.value = "";
     tagsElement.current.value = "";
-    
+
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: postTitle,
+        body: postBody,
+        reactions,
+        userId,
+        tags,
+      }),
+    })
+      .then((res) => res.json())
+      .then((post) => { 
+        addPost(post);
+      });
   };
   return (
     <form className="m-5" onSubmit={handleSubmit}>
@@ -32,11 +47,11 @@ const CreatePost = () => {
           User ID
         </label>
         <input
-          type="text"
+          type="number"
           ref={userIdElement}
           className="form-control"
           id="userIdElement"
-          placeholder="Enter your user ID"
+          placeholder="Enter your user ID 1-100"
         />
       </div>
       <div className="mx-5 my-3">
@@ -66,7 +81,7 @@ const CreatePost = () => {
       </div>
       <div className="mx-5 my-3">
         <label htmlFor="reactionsElement" className="form-label">
-          Number of reactionsElement
+          Number of reactions
         </label>
         <input
           type="number "
