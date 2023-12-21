@@ -1,47 +1,35 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Sidebar = ({ selectedTab, setSelectedTab }) => {
+const Sidebar = () => {
   return (
     <div
       className="d-flex fixed-top flex-column flex-shrink-0 p-3 bg-body-tertiary"
       style={{ width: "280px", height: "100%" }}
     >
-      <a
-        href="/"
+      <Link
+        to="/"
         className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
       >
-        <svg className="bi pe-none me-2" width={40} height={32}>
-          <use xlinkHref="#bootstrap" />
-        </svg>
-        <span className="fs-4">Sidebar</span>
-      </a>
+        <span className="fs-4">Social Media App</span>
+      </Link>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
-        <li className="nav-item" onClick={() => setSelectedTab("home")}>
-          <a
-            href="#"
-            className={`nav-link ${
-              selectedTab === "home" ? "active" : "link-body-emphasis"
-            }`}
-          >
+        <li className="nav-item">
+          <Link to="/" className={`nav-link link-body-emphasis`}>
             Home
-          </a>
+          </Link>
         </li>
-        <li className="nav-item" onClick={() => setSelectedTab("createPost")}>
-          <a
-            href="#"
-            className={`nav-link ${
-              selectedTab === "createPost" ? "active" : "link-body-emphasis"
-            }`}
-          >
+        <li className="nav-item">
+          <Link to="/create-post" className={`nav-link link-body-emphasis`}>
             Create Post
-          </a>
+          </Link>
         </li>
       </ul>
       <hr />
       <div className="dropdown">
-        <a
-          href="#"
+        <Link
+          to="#"
           className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -54,30 +42,30 @@ const Sidebar = ({ selectedTab, setSelectedTab }) => {
             className="rounded-circle me-2"
           />
           <strong>shubh</strong>
-        </a>
+        </Link>
         <ul className="dropdown-menu text-small shadow" style={{}}>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link className="dropdown-item" to="#">
               New project...
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link className="dropdown-item" to="#">
               Settings
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link className="dropdown-item" to="#">
               Profile
-            </a>
+            </Link>
           </li>
           <li>
             <hr className="dropdown-divider" />
           </li>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link className="dropdown-item" to="#">
               Sign out
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
